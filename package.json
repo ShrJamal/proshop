@@ -6,9 +6,12 @@
   "author": "Jamal .S <me@shrjamal.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon backend/server.js"
+    "server": "nodemon backend/server.js",
+    "client":"yarn --cwd frontend start",
+    "dev":"concurrently \"yarn server\" \" yarn client \" "
   },
   "dependencies": {
+    "concurrently": "^5.3.0",
     "express": "^4.17.1"
   },
   "devDependencies": {
