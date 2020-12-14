@@ -1,0 +1,17 @@
+{
+  "name": "proshop",
+  "version": "1.0.0",
+  "description": "MERN shopping cart app",
+  "main": "backend/server.js",
+  "author": "Jamal .S <me@shrjamal.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon backend/server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
