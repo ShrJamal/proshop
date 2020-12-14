@@ -8,23 +8,21 @@ const router = express.Router();
 // @access  Public
 router.get("/", async (req, res) => {
   try {
-    const products = await Product.find({});
-    res.json(products);
-  } catch (error) {
-    res.status(500).json({ message: "Ooops Something went wrong" });
+    res.json(await Product.find({}));
+  } catch (err) {
+    next(new Error("Oops, something went wring"));
   }
 });
 
 // @desc    Fetch Single Product
 // @route   GET /api/products/:id
 // @access  Public
-router.get("/:id", async (req, res) => {
+router.get("/:id", async (req, res, next) => {
   try {
-    const product = await Product.findById(req.params.id);
-    if (product) res.json(product);
-    else throw new Error("Not Found");
-  } catch (error) {
-    res.status(404).json({ message: "Product Not Found" });
+    res.json(await Product.findById(req.params.id));
+  } catch (err) {
+    res.status(404);
+    next(new Error("Product Not Found"));
   }
 });
 
