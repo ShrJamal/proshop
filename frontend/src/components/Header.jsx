@@ -1,22 +1,30 @@
 import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 export default function Header() {
   return (
     <header>
       <Navbar bg="dark" variant="dark" expand="sm" collapseOnSelect>
         <Container>
-          <Navbar.Brand href="#home">Proshop</Navbar.Brand>
+          <LinkContainer to="/">
+            <Navbar.Brand>Proshop</Navbar.Brand>
+          </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-              <Nav.Link href="#home">
-                <i className="fas fa-shopping-cart mr-1" />
-                Cart
-              </Nav.Link>
-              <Nav.Link href="#link">
-              <i className="fas fa-user mr-1"/>
-              Signup</Nav.Link>
+            <Nav className="ml-auto">
+              <LinkContainer to="/cart">
+                <Nav.Link>
+                  <i className="fas fa-shopping-cart mr-1" />
+                  Cart
+                </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/signup">
+                <Nav.Link>
+                  <i className="fas fa-user mr-1" />
+                  Signup
+                </Nav.Link>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
         </Container>
