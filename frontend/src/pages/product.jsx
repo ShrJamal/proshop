@@ -9,7 +9,7 @@ export default function ProductPage() {
   const [product, setProduct] = useState();
   useEffect(() => {
     async function fetch() {
-      const { data } = await axios.get("/api/product/" + id);
+      const { data } = await axios.get("/api/products/" + id);
       if (data) setProduct(data);
       console.log(data);
     }
