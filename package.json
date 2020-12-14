@@ -5,16 +5,21 @@
   "main": "backend/server.js",
   "author": "Jamal .S <me@shrjamal.com>",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "server": "nodemon backend/server.js",
-    "client":"yarn --cwd frontend start",
-    "dev":"concurrently \"yarn server\" \" yarn client \" "
+    "client": "yarn --cwd frontend start",
+    "dev": "concurrently \"yarn server\" \" yarn client \" "
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "concurrently": "^5.3.0",
-    "express": "^4.17.1"
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.7"
   },
   "devDependencies": {
+    "colors": "^1.4.0",
     "nodemon": "^2.0.6"
   }
 }
