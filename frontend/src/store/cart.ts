@@ -1,21 +1,22 @@
 import produce from 'immer';
 import create from 'zustand';
 import { combine, persist, devtools } from 'zustand/middleware';
+import { Product } from '../@types/product';
 
 let store = combine(
   {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    cartItems: Array<any>(),
+    cartItems: Array<{ product: Product; qty: number }>(),
   },
   (set, get) => ({
-    async addToCart(productId: string, qty: number) {
+    async addToCart(product: Product, qty: number) {
       const itemIndex = get().cartItems.findIndex(
-        (i) => i.productId === productId,
+        (i) => i.product._id === product._id,
       );
+
       if (itemIndex == -1) {
         set((s) =>
           produce(s, (d) => {
-            d.cartItems.push({ productId, qty });
+            d.cartItems.push({ product, qty });
           }),
         );
       } else {
@@ -29,7 +30,7 @@ let store = combine(
     async removeItem(productId: string) {
       set((s) =>
         produce(s, (d) => {
-          d.cartItems = d.cartItems.filter((v) => v.productId != productId);
+          d.cartItems = d.cartItems.filter((v) => v.product._id != productId);
         }),
       );
     },

@@ -12,9 +12,10 @@ export default function App() {
     <BrowserRouter>
       <Header />
       <main>
-        <Container>
+        <Container fluid="md">
           <Route path="/" component={HomeScreen} exact />
           <Route path="/product/:id" component={ProductPage} />
+          <Route path="/cart/" exact component={CartPage} />
           <Route path="/cart/:productId" component={CartPage} />
         </Container>
       </main>

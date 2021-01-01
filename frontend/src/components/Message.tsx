@@ -3,8 +3,8 @@ import { Alert } from 'react-bootstrap';
 import { Variant } from 'react-bootstrap/esm/types';
 
 type MessageType = {
-  variant: Variant;
-  children: JSX.Element | JSX.Element[];
+  variant?: Variant;
+  children: string | JSX.Element | JSX.Element[];
 };
 
 export default function Message({ variant, children }: MessageType) {
