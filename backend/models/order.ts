@@ -29,7 +29,7 @@ export const OrderSchema = createSchema(
       country: Type.string({ required: true }),
     }),
     paymentMethod: Type.string({ required: true }),
-    paymentResult: Type.object({
+    paymentResult: Type.object({ required: true }).of({
       id: Type.string({ required: true }),
       status: Type.string({ required: true }),
       update_time: Type.string({ required: true }),

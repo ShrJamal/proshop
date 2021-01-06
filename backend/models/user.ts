@@ -8,7 +8,7 @@ import {
 
 const UserSchema = createSchema(
   {
-    name: Type.string({
+    username: Type.string({
       required: true,
     }),
     email: Type.string({
@@ -18,7 +18,8 @@ const UserSchema = createSchema(
     password: Type.string({
       required: true,
     }),
-    isAdmin: Type.string({
+    isAdmin: Type.boolean({
+      required: false,
       default: false,
     }),
   },

@@ -3,9 +3,9 @@ import colors from 'colors';
 import { OrderModel } from '../models/order';
 import { ProductModel } from '../models/product';
 import { UserModel } from '../models/user';
-import products from './data/products.js';
-import users from './data/users.js';
-import { connect } from 'mongoose';
+import products from './data/products';
+import users from './data/users';
+import { connectDB } from '../config';
 
 dotenv.config();
 colors.enable();
@@ -42,10 +42,7 @@ async function destroyDate() {
 }
 async function main() {
   try {
-    await connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await connectDB();
     if (process.argv[2] === '-d') {
       await destroyDate();
     } else {

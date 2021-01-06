@@ -8,7 +8,8 @@
   "scripts": {
     "server": "tsnd --respawn backend/server.ts",
     "client": "yarn --cwd frontend start",
-    "dev": "concurrently \"yarn server\" \" yarn client \" "
+    "dev": "concurrently \"yarn server\" \" yarn client \" ",
+    "seeder": "tsnd --respawn backend/tools/seeder.ts"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
