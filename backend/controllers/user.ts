@@ -31,3 +31,26 @@ export async function loginUser(
     next(err);
   }
 }
+
+export async function userProfile(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const _id = req.body._id;
+    const user = await UserModel.findById(_id);
+    if (!user) {
+      throw new Error('Ooops! Cant find user');
+    }
+    res.json({
+      _id,
+      username: user.username,
+      email: user.email,
+      isAdmin: user.isAdmin,
+    });
+  } catch (err) {
+    res.status(401);
+    next(err);
+  }
+}
