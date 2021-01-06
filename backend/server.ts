@@ -1,6 +1,7 @@
 import express from 'express';
 import { errorHandler, notFound } from './middleware/error';
 import productsRouter from './routers/products';
+import userRouter from './routers/user';
 import { connectDB } from './config';
 // Create the express application
 const app = express();
@@ -10,6 +11,9 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (_, res) => {
   res.send('API Running');
 });
+
+// User Routers
+app.use('/api', userRouter);
 
 // Product Routers
 app.use('/api/products', productsRouter);
