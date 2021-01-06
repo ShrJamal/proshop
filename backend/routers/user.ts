@@ -1,17 +1,22 @@
 import express from 'express';
-import { loginUser, userProfile } from '../controllers/user';
+import { loginUser, signup, userProfile } from '../controllers/user';
 import { authMiddleware } from '../middleware/auth';
 
 const router = express.Router();
 
 // @desc    Auth user and get token
-// @route   GET /api/login
+// @route   POST /api/login
 // @access  Public
 router.post('/login', loginUser);
 
-// @desc    fetch user profile info
-// @route   GET /api/login
+// @desc    Signup user
+// @route   POST /api/signup
 // @access  Public
+router.post('/signup', signup);
+
+// @desc    Fetch user profile info
+// @route   GET /api/profile
+// @access  Private
 router.get('/profile', authMiddleware, userProfile);
 
 export default router;
