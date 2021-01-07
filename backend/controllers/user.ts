@@ -1,5 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
-import { loginValidation, signupValidation } from '../helpers/validation';
+import {
+  loginValidation,
+  profileValidation,
+  signupValidation,
+} from '../helpers/validation';
 import { UserModel } from '../models/user';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -30,6 +34,7 @@ export async function loginUser(
     next(err);
   }
 }
+
 export async function signup(req: Request, res: Response, next: NextFunction) {
   try {
     const { error } = signupValidation(req.body);
@@ -39,8 +44,10 @@ export async function signup(req: Request, res: Response, next: NextFunction) {
       throw new Error('User Already exist');
     }
     // Hash Password
-    const salt = await bcrypt.genSalt(10);
-    const password = await bcrypt.hash(unhashedPassword, salt);
+    const password = await bcrypt.hash(
+      unhashedPassword,
+      await bcrypt.genSalt(10),
+    );
     const user = await new UserModel({
       username,
       email,
@@ -79,6 +86,37 @@ export async function userProfile(
       username: user.username,
       email: user.email,
       isAdmin: user.isAdmin,
+    });
+  } catch (err) {
+    res.status(401);
+    next(err);
+  }
+}
+
+export async function updateProfile(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const { error } = profileValidation(req.body);
+    if (error) throw error;
+    const _id = req.body._id;
+    const user = await UserModel.findById(_id);
+    if (!user) {
+      throw new Error('Ooops! Cant find user');
+    }
+    user.username = req.body.username || user.username;
+    user.password =
+      (req.body.password &&
+        (await bcrypt.hash(req.body.password, await bcrypt.genSalt(10)))) ||
+      user.password;
+    const { username, email, isAdmin } = await user.save();
+    res.json({
+      _id,
+      username,
+      email,
+      isAdmin,
     });
   } catch (err) {
     res.status(401);

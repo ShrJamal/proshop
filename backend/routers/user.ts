@@ -1,5 +1,10 @@
 import express from 'express';
-import { loginUser, signup, userProfile } from '../controllers/user';
+import {
+  loginUser,
+  signup,
+  updateProfile,
+  userProfile,
+} from '../controllers/user';
 import { authMiddleware } from '../middleware/auth';
 
 const router = express.Router();
@@ -14,9 +19,12 @@ router.post('/login', loginUser);
 // @access  Public
 router.post('/signup', signup);
 
-// @desc    Fetch user profile info
-// @route   GET /api/profile
+// @desc    Fetch or update user profile info
+// @route   GET-PUT /api/profile
 // @access  Private
-router.get('/profile', authMiddleware, userProfile);
+router
+  .route('/profile')
+  .get(authMiddleware, userProfile)
+  .put(authMiddleware, updateProfile);
 
 export default router;
