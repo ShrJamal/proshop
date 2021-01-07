@@ -7,6 +7,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import ProductPage from './pages/product';
 import CartPage from './pages/cart';
 import LoginPage from './pages/login';
+import RegisterPage from './pages/register';
 
 export default function App() {
   return (
@@ -14,11 +15,12 @@ export default function App() {
       <Header />
       <main>
         <Container fluid="md">
-          <Route path="/" component={HomePage} exact />
           <Route path="/login" component={LoginPage} />
+          <Route path="/register" component={RegisterPage} />
           <Route path="/product/:id" component={ProductPage} />
           <Route path="/cart/" exact component={CartPage} />
           <Route path="/cart/:productId" component={CartPage} />
+          <Route path="/" component={HomePage} exact />
         </Container>
       </main>
       <Footer />
