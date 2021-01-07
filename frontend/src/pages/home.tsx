@@ -5,7 +5,7 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { useProductsStore } from '../store/product';
 
-export default function HomeScreen() {
+export default function HomePage() {
   const { loading, error, productsList, fetchProductList } = useProductsStore();
   useEffect(() => {
     fetchProductList();
