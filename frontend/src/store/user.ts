@@ -2,19 +2,17 @@ import create from 'zustand';
 import axios from 'axios';
 import { combine, persist, devtools } from 'zustand/middleware';
 import { User } from '../@types/user';
+import { produce } from 'immer';
 
 let store = combine(
   {
     user: null as User | null,
-    loading: false,
-    error: '',
   },
   (set) => ({
     async loginUser(email: string, password: string) {
-      try {
-        console.log(email, password);
+      let error = '';
 
-        set((s) => ({ ...s, loading: true, error: '' }));
+      try {
         const { data: user } = await axios.post<User>(
           '/api/login',
           { email, password },
@@ -24,15 +22,36 @@ let store = combine(
           throw new Error('Invalid Token');
         }
 
-        set((s) => ({ ...s, loading: false, user }));
+        set((s) =>
+          produce(s, (d) => {
+            d.user = user;
+          }),
+        );
       } catch (err) {
-        console.error(err);
-        set((s) => ({
-          ...s,
-          loading: false,
-          error: err.response?.data?.message || err.message,
-        }));
+        error = err.response?.data?.message || err.message;
       }
+      return error;
+    },
+    async registerUser(username: string, email: string, password: string) {
+      let error = '';
+      try {
+        const { data: user } = await axios.post<User>(
+          '/api/signup',
+          { username, email, password },
+          { headers: { 'Content-Type': 'application/json' } },
+        );
+        if (!user?.token) {
+          throw new Error('Invalid Token');
+        }
+        set((s) =>
+          produce(s, (d) => {
+            d.user = user;
+          }),
+        );
+      } catch (err) {
+        error = err.response?.data?.message || err.message;
+      }
+      return error;
     },
     async logout() {
       set((s) => ({ ...s, user: null }));

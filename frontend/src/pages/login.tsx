@@ -9,11 +9,15 @@ import Message from '../components/Message';
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { loginUser, user, loading, error } = useUserStore();
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const { loginUser, user } = useUserStore();
 
-  function onSubmit(e: FormEvent) {
+  async function onSubmit(e: FormEvent) {
     e.preventDefault();
-    loginUser(email, password);
+    setLoading(true);
+    setError(await loginUser(email, password));
+    setLoading(false);
   }
   const search = useLocation().search;
   const redirect = search ? search.split('=')[1] : '/';
@@ -56,7 +60,7 @@ export default function LoginPage() {
       </Form>
       <Row className="py-3">
         <Col>
-          New Customer?
+          New Customer?{' '}
           <Link to={`/register${redirect ? `?redirect=${redirect}` : ''}`}>
             Register
           </Link>
