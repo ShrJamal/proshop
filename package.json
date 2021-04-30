@@ -12,9 +12,10 @@
   "scripts": {
     "dev": "concurrently \"npm run server\" \" npm run client \" ",
     "server": "tsnd --respawn backend/server.ts",
-    "client": "cd frontend && npm run dev",
+    "client": "npm run dev --prefix frontend",
     "start": "ts-node backend/server.ts",
-    "seeder": "tsnd --respawn backend/tools/seeder.ts"
+    "seeder": "tsnd --respawn backend/tools/seeder.ts",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm i --prefix frontend && npm run build --prefix frontend"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
