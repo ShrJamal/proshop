@@ -13,8 +13,9 @@ export function authMiddleware(
       token = authorization.split(' ')[1]
     }
     if (!token) throw new Error('No Authorization no Token')
-    const decoded: any = jwt.verify(token, process.env.JWT_SECRET)
-    req.body._id = decoded._id
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const decoded: any = jwt.verify(token, process.env.JWT_SECRET ?? '')
+    req.body._id = decoded['_id'] ?? ''
     next()
   } catch (err) {
     res.status(401)

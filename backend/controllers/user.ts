@@ -23,7 +23,7 @@ export async function loginUser(
     }
     const { _id, username, isAdmin } = user
     res.json({
-      token: jwt.sign({ _id, isAdmin }, process.env.JWT_SECRET),
+      token: jwt.sign({ _id, isAdmin }, process.env.JWT_SECRET ?? ''),
       _id,
       username,
       email,
@@ -55,7 +55,7 @@ export async function signup(req: Request, res: Response, next: NextFunction) {
     }).save()
     if (user) {
       res.status(201).json({
-        token: jwt.sign({ _id: user._id }, process.env.JWT_SECRET),
+        token: jwt.sign({ _id: user._id }, process.env.JWT_SECRET ?? ''),
         _id: user._id,
         username,
         email,

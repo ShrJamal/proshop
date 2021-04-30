@@ -9,8 +9,9 @@
     "strict": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "skipLibCheck": true
   },
-  "include": ["next-env.d.ts", "backend/**/*.ts", "backend/**/*.tsx"],
+  "include": ["backend"],
   "exclude": ["node_modules"]
 }
