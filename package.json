@@ -13,9 +13,8 @@
     "dev": "concurrently \"npm run server\" \" npm run client \" ",
     "server": "tsnd --respawn backend/server.ts",
     "client": "npm run dev --prefix frontend",
-    "start": "npx tsc && node dist/server.js",
-    "seeder": "tsnd --respawn backend/tools/seeder.ts",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm i --prefix frontend && npm run build --prefix frontend"
+    "start": "ts-node backend/server.ts",
+    "seeder": "tsnd --respawn backend/tools/seeder.ts"
   },
   "dependencies": {
     "bcryptjs": "2.4.3",
@@ -24,7 +23,8 @@
     "joi": "17.4.0",
     "jsonwebtoken": "8.5.1",
     "mongoose": "5.12.7",
-    "ts-mongoose": "0.0.24"
+    "ts-mongoose": "0.0.24",
+    "ts-node": "^9.1.1"
   },
   "devDependencies": {
     "@types/bcryptjs": "2.4.2",
