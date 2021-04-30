@@ -1,8 +1,8 @@
-import create from 'zustand';
-import axios from 'axios';
-import { combine, persist, devtools } from 'zustand/middleware';
-import { User } from '../@types/user';
-import { produce } from 'immer';
+import create from 'zustand'
+import axios from 'axios'
+import { combine, persist, devtools } from 'zustand/middleware'
+import { User } from '../@types/user'
+import { produce } from 'immer'
 
 let store = combine(
   {
@@ -10,63 +10,62 @@ let store = combine(
   },
   (set) => ({
     async loginUser(email: string, password: string) {
-      let error = '';
+      let error = ''
 
       try {
         const { data: user } = await axios.post<User>(
           '/api/login',
           { email, password },
           { headers: { 'Content-Type': 'application/json' } },
-        );
+        )
         if (!user?.token) {
-          throw new Error('Invalid Token');
+          throw new Error('Invalid Token')
         }
-
         set((s) =>
           produce(s, (d) => {
-            d.user = user;
+            d.user = user
           }),
-        );
+        )
       } catch (err) {
-        error = err.response?.data?.message || err.message;
+        error = err.response?.data?.message || err.message
       }
-      return error;
+      return error
     },
     async registerUser(username: string, email: string, password: string) {
-      let error = '';
+      let error = ''
       try {
         const { data: user } = await axios.post<User>(
           '/api/signup',
           { username, email, password },
           { headers: { 'Content-Type': 'application/json' } },
-        );
+        )
         if (!user?.token) {
-          throw new Error('Invalid Token');
+          throw new Error('Invalid Token')
         }
         set((s) =>
           produce(s, (d) => {
-            d.user = user;
+            d.user = user
           }),
-        );
+        )
       } catch (err) {
-        error = err.response?.data?.message || err.message;
+        error = err.response?.data?.message || err.message
       }
-      return error;
+      return error
     },
     async logout() {
-      set((s) => ({ ...s, user: null }));
+      set((s) => ({ ...s, user: null }))
     },
   }),
-);
+)
 
 // Add DevTools
-store = devtools(store, 'UserStore');
+store = devtools(store, 'UserStore')
 
 //Persist
 if (typeof window != 'undefined') {
   store = persist(store, {
     name: 'user',
-  });
+  })
 }
 
-export const useUserStore = create(store);
+export const useUserStore = create(store)

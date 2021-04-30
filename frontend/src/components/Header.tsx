@@ -1,13 +1,13 @@
-import React from 'react';
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
-import { useUserStore } from '../store/user';
+import React from 'react'
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
+import { useUserStore } from '../store/user'
 
 export default function Header() {
   const { user, logout } = useUserStore((s) => ({
     user: s.user,
     logout: s.logout,
-  }));
+  }))
   return (
     <header>
       <Navbar bg="dark" variant="dark" expand="sm" collapseOnSelect>
@@ -44,5 +44,5 @@ export default function Header() {
         </Container>
       </Navbar>
     </header>
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Spinner } from 'react-bootstrap';
+import React from 'react'
+import { Spinner } from 'react-bootstrap'
 
 export default function Loader() {
   return (
@@ -15,5 +15,5 @@ export default function Loader() {
     >
       <span className="sr-only">Loading...</span>
     </Spinner>
-  );
+  )
 }

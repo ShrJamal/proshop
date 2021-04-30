@@ -1,42 +1,42 @@
-import React, { FormEvent, useState, useEffect } from 'react';
-import { useUserStore } from '../store/user';
-import FormContainer from '../components/FormContainer';
-import { Button, Col, Form, Row } from 'react-bootstrap';
-import { Link, useLocation, useHistory } from 'react-router-dom';
-import Loader from '../components/Loader';
-import Message from '../components/Message';
+import React, { FormEvent, useState, useEffect } from 'react'
+import { useUserStore } from '../store/user'
+import FormContainer from '../components/FormContainer'
+import { Button, Col, Form, Row } from 'react-bootstrap'
+import { Link, useLocation, useHistory } from 'react-router-dom'
+import Loader from '../components/Loader'
+import Message from '../components/Message'
 
 export default function RegisterPage() {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  const { registerUser, user } = useUserStore();
+  const { registerUser, user } = useUserStore()
 
   async function onSubmit(e: FormEvent) {
-    e.preventDefault();
+    e.preventDefault()
     if (!username || !email || !password) {
-      setError('Invalid Form Data');
+      setError('Invalid Form Data')
     } else if (password !== confirmPassword) {
-      setError('Passwords do not match');
+      setError('Passwords do not match')
     } else {
-      setLoading(true);
-      setError(await registerUser(username, email, password));
-      setLoading(false);
+      setLoading(true)
+      setError(await registerUser(username, email, password))
+      setLoading(false)
     }
   }
-  const search = useLocation().search;
-  const redirect = search ? search.split('=')[1] : '/';
-  const history = useHistory();
+  const search = useLocation().search
+  const redirect = search ? search.split('=')[1] : '/'
+  const history = useHistory()
 
   useEffect(() => {
     if (user) {
-      history.push(redirect);
+      history.push(redirect)
     }
-  }, [user, redirect, history]);
+  }, [user, redirect, history])
   return (
     <FormContainer>
       <br />
@@ -94,5 +94,5 @@ export default function RegisterPage() {
         </Col>
       </Row>
     </FormContainer>
-  );
+  )
 }

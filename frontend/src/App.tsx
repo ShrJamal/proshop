@@ -1,13 +1,13 @@
-import React from 'react';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import { Container } from 'react-bootstrap';
-import HomePage from './pages/home';
-import { BrowserRouter, Route } from 'react-router-dom';
-import ProductPage from './pages/product';
-import CartPage from './pages/cart';
-import LoginPage from './pages/login';
-import RegisterPage from './pages/register';
+import React from 'react'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import { Container } from 'react-bootstrap'
+import HomePage from './pages/home'
+import { BrowserRouter, Route } from 'react-router-dom'
+import ProductPage from './pages/product'
+import CartPage from './pages/cart'
+import LoginPage from './pages/login'
+import RegisterPage from './pages/register'
 
 export default function App() {
   return (
@@ -25,5 +25,5 @@ export default function App() {
       </main>
       <Footer />
     </BrowserRouter>
-  );
+  )
 }

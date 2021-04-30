@@ -1,33 +1,33 @@
-import React, { FormEvent, useState, useEffect } from 'react';
-import { useUserStore } from '../store/user';
-import FormContainer from '../components/FormContainer';
-import { Button, Col, Form, Row } from 'react-bootstrap';
-import { Link, useLocation, useHistory } from 'react-router-dom';
-import Loader from '../components/Loader';
-import Message from '../components/Message';
+import React, { FormEvent, useState, useEffect } from 'react'
+import { useUserStore } from '../store/user'
+import FormContainer from '../components/FormContainer'
+import { Button, Col, Form, Row } from 'react-bootstrap'
+import { Link, useLocation, useHistory } from 'react-router-dom'
+import Loader from '../components/Loader'
+import Message from '../components/Message'
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  const { loginUser, user } = useUserStore();
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const { loginUser, user } = useUserStore()
 
   async function onSubmit(e: FormEvent) {
-    e.preventDefault();
-    setLoading(true);
-    setError(await loginUser(email, password));
-    setLoading(false);
+    e.preventDefault()
+    setLoading(true)
+    setError(await loginUser(email, password))
+    setLoading(false)
   }
-  const search = useLocation().search;
-  const redirect = search ? search.split('=')[1] : '/';
-  const history = useHistory();
+  const search = useLocation().search
+  const redirect = search ? search.split('=')[1] : '/'
+  const history = useHistory()
 
   useEffect(() => {
     if (user) {
-      history.push(redirect);
+      history.push(redirect)
     }
-  }, [user, redirect, history]);
+  }, [user, redirect, history])
   return (
     <FormContainer>
       <br />
@@ -67,5 +67,5 @@ export default function LoginPage() {
         </Col>
       </Row>
     </FormContainer>
-  );
+  )
 }

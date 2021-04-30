@@ -1,15 +1,17 @@
-import React, { useEffect } from 'react';
-import { Col, Row } from 'react-bootstrap';
-import ProductItem from '../components/Product';
-import Loader from '../components/Loader';
-import Message from '../components/Message';
-import { useProductsStore } from '../store/product';
+import React, { useEffect } from 'react'
+import { Col, Row } from 'react-bootstrap'
+import ProductItem from '../components/Product'
+import Loader from '../components/Loader'
+import Message from '../components/Message'
+import { useProductsStore } from '../store/product'
 
 export default function HomePage() {
-  const { loading, error, productsList, fetchProductList } = useProductsStore();
+  const { loading, error, productsList, fetchProductList } = useProductsStore()
+  
   useEffect(() => {
-    fetchProductList();
-  }, [fetchProductList]);
+    fetchProductList()
+  }, [fetchProductList])
+
   return (
     <>
       <h1 className="mt-2">Latest Products</h1>
@@ -29,5 +31,5 @@ export default function HomePage() {
         </Row>
       )}
     </>
-  );
+  )
 }

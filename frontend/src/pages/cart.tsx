@@ -1,11 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useCartStore } from '../store/cart';
-import { Col, ListGroup, Row, Image, Form, Button } from 'react-bootstrap';
-import Message from '../components/Message';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { useCartStore } from '../store/cart'
+import { Col, ListGroup, Row, Image, Form, Button } from 'react-bootstrap'
+import Message from '../components/Message'
 
 export default function CartPage() {
-  const { cartItems, addToCart, removeItem } = useCartStore();
+  const { cartItems, addToCart, removeItem } = useCartStore()
 
   return (
     <Row>
@@ -67,5 +67,5 @@ export default function CartPage() {
       </Col>
       <Col md={4}></Col>
     </Row>
-  );
+  )
 }

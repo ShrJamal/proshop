@@ -1,8 +1,8 @@
-import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import React from 'react'
+import { Col, Container, Row } from 'react-bootstrap'
 
 interface Props {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 export default function FormContainer({ children }: Props) {
@@ -14,5 +14,5 @@ export default function FormContainer({ children }: Props) {
         </Col>
       </Row>
     </Container>
-  );
+  )
 }

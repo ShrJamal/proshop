@@ -1,12 +1,12 @@
-import React from 'react';
-import { Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import Rating from './Rating';
-import { Product } from '../@types/product';
+import React from 'react'
+import { Card } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import Rating from './Rating'
+import { Product } from '../@types/product'
 
 type ProductType = {
-  product: Product;
-};
+  product: Product
+}
 
 export default function ProductItem({ product }: ProductType) {
   return (
@@ -30,5 +30,5 @@ export default function ProductItem({ product }: ProductType) {
         <Card.Text as="h3">${product.price}</Card.Text>
       </Card.Body>
     </Card>
-  );
+  )
 }

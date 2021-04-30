@@ -1,11 +1,11 @@
-import React from 'react';
-import { Color } from 'react-bootstrap/esm/types';
+import React from 'react'
+import { Color } from 'react-bootstrap/esm/types'
 
 type RatingType = {
-  value: number;
-  text: string;
-  color?: string | Color;
-};
+  value: number
+  text: string
+  color?: string | Color
+}
 
 export default function Rating({ value, text, color = '#f8e825' }: RatingType) {
   return (
@@ -62,5 +62,5 @@ export default function Rating({ value, text, color = '#f8e825' }: RatingType) {
       />
       <span className="ml-2">{text}</span>
     </div>
-  );
+  )
 }

@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
-import { Col, Row, Image, ListGroup, Button, Form } from 'react-bootstrap';
-import Rating from '../components/Rating';
-import Loader from '../components/Loader';
-import Message from '../components/Message';
-import { useProductsStore } from '../store/product';
-import { useCartStore } from '../store/cart';
+import React, { useEffect, useState } from 'react'
+import { Link, useParams, useHistory } from 'react-router-dom'
+import { Col, Row, Image, ListGroup, Button, Form } from 'react-bootstrap'
+import Rating from '../components/Rating'
+import Loader from '../components/Loader'
+import Message from '../components/Message'
+import { useProductsStore } from '../store/product'
+import { useCartStore } from '../store/cart'
 
 export default function ProductPage() {
-  const { id } = useParams<{ id: string }>();
-  const history = useHistory();
-  const { loading, error, product, fetchProduct } = useProductsStore();
-  const { addToCart } = useCartStore();
+  const { id } = useParams<{ id: string }>()
+  const history = useHistory()
+  const { loading, error, product, fetchProduct } = useProductsStore()
+  const { addToCart } = useCartStore()
 
   useEffect(() => {
-    fetchProduct(id);
-  }, [id, fetchProduct]);
+    fetchProduct(id)
+  }, [id, fetchProduct])
 
-  const [qty, setQty] = useState(1);
+  const [qty, setQty] = useState(1)
 
   function addToCartHandler() {
-    addToCart(product, qty);
-    history.push('/cart/' + id);
+    if (product) addToCart(product, qty)
+    history.push('/cart/' + id)
   }
   return (
     <>
@@ -106,5 +106,5 @@ export default function ProductPage() {
         )
       )}
     </>
-  );
+  )
 }
