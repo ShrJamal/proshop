@@ -4,7 +4,7 @@ import {
   ExtractProps,
   Type,
   typedModel,
-} from 'ts-mongoose';
+} from 'ts-mongoose'
 
 export const OrderSchema = createSchema(
   {
@@ -45,8 +45,8 @@ export const OrderSchema = createSchema(
   {
     timestamps: true,
   },
-);
+)
 
-export const OrderModel = typedModel('Order', OrderSchema);
-export type OrderDoc = ExtractDoc<typeof OrderSchema>;
-export type OrderProps = ExtractProps<typeof OrderSchema>;
+export const OrderModel = typedModel('Order', OrderSchema)
+export type OrderDoc = ExtractDoc<typeof OrderSchema>
+export type OrderProps = ExtractProps<typeof OrderSchema>

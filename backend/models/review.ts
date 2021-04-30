@@ -4,7 +4,7 @@ import {
   ExtractProps,
   Type,
   typedModel,
-} from 'ts-mongoose';
+} from 'ts-mongoose'
 
 export const ReviewSchema = createSchema(
   {
@@ -19,8 +19,8 @@ export const ReviewSchema = createSchema(
   {
     timestamps: true,
   },
-);
+)
 
-export const ReviewModel = typedModel('Review', ReviewSchema);
-export type ReviewDoc = ExtractDoc<typeof ReviewSchema>;
-export type ReviewProps = ExtractProps<typeof ReviewSchema>;
+export const ReviewModel = typedModel('Review', ReviewSchema)
+export type ReviewDoc = ExtractDoc<typeof ReviewSchema>
+export type ReviewProps = ExtractProps<typeof ReviewSchema>

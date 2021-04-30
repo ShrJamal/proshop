@@ -4,9 +4,9 @@ import {
   ExtractProps,
   Type,
   typedModel,
-} from 'ts-mongoose';
+} from 'ts-mongoose'
 
-import { ReviewSchema } from './review';
+import { ReviewSchema } from './review'
 
 export const ProductSchema = createSchema({
   user: Type.objectId({
@@ -23,8 +23,8 @@ export const ProductSchema = createSchema({
   rating: Type.number({}),
   numReviews: Type.number({ default: 0 }),
   reviews: Type.array({ default: [] }).of(ReviewSchema),
-});
+})
 
-export const ProductModel = typedModel('Product', ProductSchema);
-export type ProductDoc = ExtractDoc<typeof ProductSchema>;
-export type ProductProps = ExtractProps<typeof ProductSchema>;
+export const ProductModel = typedModel('Product', ProductSchema)
+export type ProductDoc = ExtractDoc<typeof ProductSchema>
+export type ProductProps = ExtractProps<typeof ProductSchema>

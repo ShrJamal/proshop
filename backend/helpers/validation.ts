@@ -1,4 +1,4 @@
-import Joi from 'joi';
+import Joi from 'joi'
 
 export function signupValidation(value: any) {
   const schema = Joi.object({
@@ -10,8 +10,8 @@ export function signupValidation(value: any) {
       })
       .required(),
     password: Joi.string().min(6).max(30).required(),
-  });
-  return schema.validate(value, { allowUnknown: true });
+  })
+  return schema.validate(value, { allowUnknown: true })
 }
 
 export function loginValidation(value: any) {
@@ -23,13 +23,13 @@ export function loginValidation(value: any) {
       })
       .required(),
     password: Joi.string().min(6).max(30).required(),
-  });
-  return schema.validate(value, { allowUnknown: true });
+  })
+  return schema.validate(value, { allowUnknown: true })
 }
 export function profileValidation(value: any) {
   const schema = Joi.object({
     username: Joi.string().alphanum().min(3).max(30),
     password: Joi.string().min(6).max(30),
-  });
-  return schema.validate(value, { allowUnknown: true });
+  })
+  return schema.validate(value, { allowUnknown: true })
 }
