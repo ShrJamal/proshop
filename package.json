@@ -13,7 +13,7 @@
     "dev": "concurrently \"npm run server\" \" npm run client \" ",
     "server": "tsnd --respawn backend/server.ts",
     "client": "npm run dev --prefix frontend",
-    "start": "tsc && node dist/server.js",
+    "start": "npx tsc && node dist/server.js",
     "seeder": "tsnd --respawn backend/tools/seeder.ts",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm i --prefix frontend && npm run build --prefix frontend"
   },
