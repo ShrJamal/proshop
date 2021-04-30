@@ -7,7 +7,7 @@ import { useProductsStore } from '../store/product'
 
 export default function HomePage() {
   const { loading, error, productsList, fetchProductList } = useProductsStore()
-  
+
   useEffect(() => {
     fetchProductList()
   }, [fetchProductList])
