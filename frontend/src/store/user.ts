@@ -27,7 +27,7 @@ let store = combine(
           }),
         )
       } catch (err) {
-        error =String(err)
+        error = String(err)
       }
       return error
     },
