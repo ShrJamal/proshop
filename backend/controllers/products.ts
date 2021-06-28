@@ -1,11 +1,7 @@
-import { Request, Response, NextFunction } from 'express'
+import { RequestHandler } from 'express'
 import { ProductModel } from '../models/product'
 
-export async function getProducts(
-  _: Request,
-  res: Response,
-  next: NextFunction,
-) {
+export const getProducts: RequestHandler = async (_, res, next) => {
   try {
     const products = await ProductModel.find({})
     res.json(products)
@@ -14,11 +10,7 @@ export async function getProducts(
   }
 }
 
-export async function getProductById(
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) {
+export const getProductById: RequestHandler = async (req, res, next) => {
   try {
     res.json(await ProductModel.findById(req.params.id))
   } catch (err) {

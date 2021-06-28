@@ -1,11 +1,7 @@
-import { Request, Response, NextFunction } from 'express'
+import { RequestHandler } from 'express-serve-static-core'
 import jwt from 'jsonwebtoken'
 
-export function authMiddleware(
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) {
+export const authMiddleware: RequestHandler = (req, res, next) => {
   try {
     let token = ''
     const authorization = req.header('Authorization')
@@ -13,9 +9,8 @@ export function authMiddleware(
       token = authorization.split(' ')[1]
     }
     if (!token) throw new Error('No Authorization no Token')
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const decoded: any = jwt.verify(token, process.env.JWT_SECRET ?? '')
-    req.body._id = decoded['_id'] ?? ''
+    const decoded = jwt.verify(token, process.env.JWT_SECRET ?? '')
+    req.body._id = typeof decoded === 'string' ? decoded : decoded['_id']
     next()
   } catch (err) {
     res.status(401)

@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express'
+import { RequestHandler } from 'express'
 import {
   loginValidation,
   profileValidation,
@@ -8,11 +8,7 @@ import { UserModel } from '../models/user'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
-export async function loginUser(
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) {
+export const loginUser: RequestHandler = async (req, res, next) => {
   try {
     const { error } = loginValidation(req.body)
     if (error) throw error
@@ -35,7 +31,7 @@ export async function loginUser(
   }
 }
 
-export async function signup(req: Request, res: Response, next: NextFunction) {
+export const signup: RequestHandler = async (req, res, next) => {
   try {
     const { error } = signupValidation(req.body)
     if (error) throw error
@@ -70,11 +66,7 @@ export async function signup(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-export async function userProfile(
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) {
+export const userProfile: RequestHandler = async (req, res, next) => {
   try {
     const _id = req.body._id
     const user = await UserModel.findById(_id)
@@ -93,11 +85,7 @@ export async function userProfile(
   }
 }
 
-export async function updateProfile(
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) {
+export const updateProfile: RequestHandler = async (req, res, next) => {
   try {
     const { error } = profileValidation(req.body)
     if (error) throw error
