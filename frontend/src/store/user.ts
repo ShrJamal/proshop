@@ -27,7 +27,7 @@ let store = combine(
           }),
         )
       } catch (err) {
-        error = err.response?.data?.message || err.message
+        error =String(err)
       }
       return error
     },
@@ -48,7 +48,7 @@ let store = combine(
           }),
         )
       } catch (err) {
-        error = err.response?.data?.message || err.message
+        error = String(err)
       }
       return error
     },

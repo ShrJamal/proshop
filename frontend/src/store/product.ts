@@ -34,7 +34,7 @@ let store = combine(
         set((s) =>
           produce(s, (d) => {
             d.loading = false
-            d.error = err.response?.data?.message || err.message
+            d.error = String(err)
           }),
         )
       }
@@ -58,7 +58,7 @@ let store = combine(
         set((s) =>
           produce(s, (d) => {
             d.loading = false
-            d.error = err.response?.data?.message || err.message
+            d.error = String(err)
           }),
         )
       }
