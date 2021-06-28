@@ -13,7 +13,7 @@ export async function connectDB() {
       useCreateIndex: true,
     })
   } catch (e) {
-    console.error(`MongoDb Error: ${e.message}`.red.underline.bold)
+    console.error(`MongoDb Error: ${e}`.red.underline.bold)
     process.exit(1)
   }
 }

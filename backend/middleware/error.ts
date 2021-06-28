@@ -1,16 +1,11 @@
-import { Request, Response, NextFunction } from 'express'
+import { RequestHandler, ErrorRequestHandler } from 'express'
 
-export function notFound(req: Request, res: Response, next: NextFunction) {
+export const notFound: RequestHandler = (req, res, next) => {
   res.status(404)
   next(new Error('EndPoint Not Found - ' + req.originalUrl))
 }
 
-export function errorHandler(
-  err: any,
-  _: Request,
-  res: Response,
-  __: NextFunction,
-) {
+export const errorHandler: ErrorRequestHandler = (err, _, res) => {
   console.error(`errorHandler ${err}`.red.underline)
   res.status(res.statusCode === 200 ? 500 : res.statusCode).json({
     message: err.message ?? err,

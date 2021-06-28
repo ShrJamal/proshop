@@ -23,7 +23,7 @@ async function importData() {
     console.log('Data Imported'.green.inverse)
     process.exit()
   } catch (e) {
-    console.error(`Error on ImportData ${e.message}`.green.inverse)
+    console.error(`Error on ImportData ${e}`.green.inverse)
     process.exit(1)
   }
 }
@@ -36,7 +36,7 @@ async function destroyDate() {
     console.log('Data Destroyed'.green.inverse)
     process.exit()
   } catch (e) {
-    console.error(`Error on DestroyedData ${e.message}`.green.inverse)
+    console.error(`Error on DestroyedData ${e}`.green.inverse)
     process.exit(1)
   }
 }
@@ -49,7 +49,7 @@ async function main() {
       await importData()
     }
   } catch (e) {
-    console.error(`MongoDb Error: ${e.message}`.red.underline.bold)
+    console.error(`MongoDb Error: ${e}`.red.underline.bold)
     process.exit(1)
   }
 }

@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { RequestHandler } from 'express'
 import { errorHandler, notFound } from './middleware/error'
 import productsRouter from './routers/products'
 import userRouter from './routers/user'
@@ -6,8 +6,8 @@ import { connectDB } from './config'
 import path from 'path'
 // Create the express application
 const app = express()
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.json() as RequestHandler)
+app.use(express.urlencoded({ extended: true }) as RequestHandler)
 
 const __dirname = path.resolve()
 
