@@ -2,6 +2,7 @@
 
 Proshop is ecommerce project, built with using MERN Stack (ReactJs, ExpressJS, MongoDB) and with Typescript.
 
+[DEMO](https://shr-proshop.herokuapp.com/)
 ## Features
 
 - Email Authentication with JWT
@@ -10,3 +11,10 @@ Proshop is ecommerce project, built with using MERN Stack (ReactJs, ExpressJS, M
 - Frontend Built with React, Typescript and [Bootstrap-react](https://react-bootstrap.github.io/)
 - State Management with [zustand](https://github.com/pmndrs/zustand)
 - ... More to come
+
+## Screenshots
+![Home Page](./screenshots/1.png)
+![SignIn](./screenshots/2.png)
+![Details](./screenshots/3.png)
+![Phone](./screenshots/4.png)
+![Phone2](./screenshots/5.png)
