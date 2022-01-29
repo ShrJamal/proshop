@@ -3,7 +3,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import { Container } from 'react-bootstrap'
 import HomePage from './pages/home'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import ProductPage from './pages/product'
 import CartPage from './pages/cart'
 import LoginPage from './pages/login'
@@ -15,12 +15,14 @@ export default function App() {
       <Header />
       <main>
         <Container fluid="md">
-          <Route path="/login" component={LoginPage} />
-          <Route path="/register" component={RegisterPage} />
-          <Route path="/product/:id" component={ProductPage} />
-          <Route path="/cart/" exact component={CartPage} />
-          <Route path="/cart/:productId" component={CartPage} />
-          <Route path="/" component={HomePage} exact />
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/product/:id" element={<ProductPage />} />
+            <Route path="/cart/" element={<CartPage />} />
+            <Route path="/cart/:productId" element={<CartPage />} />
+            <Route path="/" element={<HomePage />} />
+          </Routes>
         </Container>
       </main>
       <Footer />
