@@ -1,14 +1,30 @@
 {
-  "extends": "tsconfig/react-library.json",
   "compilerOptions": {
-    "noEmit": true,
+    "moduleResolution": "node",
+    "module": "ESNext",
+    "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "baseUrl": ".",
+    "types": ["vite/client"],
+    "allowJs": true,
+    "checkJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "incremental": true,
+    "importsNotUsedAsValues": "error",
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
     "jsx": "preserve",
+    "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"]
+      "~/*": ["src/*"],
+      "@/*": ["src/components/*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.d.ts"],
   "exclude": ["node_modules", ".git"]
 }
