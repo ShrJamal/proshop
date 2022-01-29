@@ -1,3 +1,8 @@
+import dotenv from 'dotenv'
+import colors from 'colors'
+dotenv.config()
+colors.enable()
+
 import express, { RequestHandler } from 'express'
 import { errorHandler, notFound } from './middleware/error'
 import productsRouter from './routers/products'
@@ -18,9 +23,9 @@ app.use('/api', userRouter)
 app.use('/api/products', productsRouter)
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'frontend/build')))
+  app.use(express.static(path.join(__dirname, 'frontend/dist')))
   app.get('*', (_, res) =>
-    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html')),
+    res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html')),
   )
 } else {
   app.get('/', (_, res) => {
