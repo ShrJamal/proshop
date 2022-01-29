@@ -1,26 +1,15 @@
-import {
-  createSchema,
-  ExtractDoc,
-  ExtractProps,
-  Type,
-  typedModel,
-} from 'ts-mongoose'
+import { Schema } from 'mongoose'
+import { model } from 'mongoose'
+import { Review } from '../@types/review'
 
-export const ReviewSchema = createSchema(
+export const ReviewSchema = new Schema<Review>(
   {
-    name: Type.string({
-      required: true,
-    }),
-    rating: Type.string({
-      required: true,
-    }),
-    comment: Type.string({}),
+    name: { type: String, required: true },
+    rating: { type: Number, required: true },
+    comment: { type: String, required: true },
   },
   {
     timestamps: true,
   },
 )
-
-export const ReviewModel = typedModel('Review', ReviewSchema)
-export type ReviewDoc = ExtractDoc<typeof ReviewSchema>
-export type ReviewProps = ExtractProps<typeof ReviewSchema>
+export const ReviewModel = model<Review>('Review', ReviewSchema)

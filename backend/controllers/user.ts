@@ -36,6 +36,8 @@ export const signup: RequestHandler = async (req, res, next) => {
     const { error } = signupValidation(req.body)
     if (error) throw error
     const { username, email, password: unhashedPassword } = req.body
+    console.log('Signup', req.body)
+
     if (await UserModel.findOne({ email })) {
       throw new Error('User Already exist')
     }

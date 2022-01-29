@@ -1,30 +1,26 @@
-import {
-  createSchema,
-  ExtractDoc,
-  ExtractProps,
-  Type,
-  typedModel,
-} from 'ts-mongoose'
-
+import { Schema } from 'mongoose'
+import { model } from 'mongoose'
+import { Product } from '../@types/product'
 import { ReviewSchema } from './review'
 
-export const ProductSchema = createSchema({
-  user: Type.objectId({
-    required: true,
-    ref: 'User',
-  }),
-  name: Type.string({ required: true }),
-  image: Type.string({ required: true }),
-  description: Type.string({ required: true }),
-  price: Type.number({ required: true }),
-  brand: Type.string({ required: true }),
-  category: Type.string({ required: true }),
-  countInStock: Type.number({ required: true }),
-  rating: Type.number({}),
-  numReviews: Type.number({ default: 0 }),
-  reviews: Type.array({ default: [] }).of(ReviewSchema),
-})
-
-export const ProductModel = typedModel('Product', ProductSchema)
-export type ProductDoc = ExtractDoc<typeof ProductSchema>
-export type ProductProps = ExtractProps<typeof ProductSchema>
+export const ProductModel = model<Product>(
+  'Product',
+  new Schema<Product>(
+    {
+      user: { type: Schema.Types.ObjectId, ref: 'user' },
+      name: { type: String, required: true },
+      image: { type: String, required: true },
+      description: { type: String, required: true },
+      price: { type: Number, required: true },
+      brand: { type: String, required: true },
+      category: { type: String, required: true },
+      countInStock: { type: Number, default: 0 },
+      rating: { type: Number, default: 0 },
+      numReviews: { type: Number, default: 0 },
+      reviews: { type: [ReviewSchema], default: [] },
+    },
+    {
+      timestamps: true,
+    },
+  ),
+)

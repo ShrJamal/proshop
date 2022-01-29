@@ -1,14 +1,14 @@
 import dotenv from 'dotenv'
 import colors from 'colors'
+dotenv.config()
+colors.enable()
+
 import { OrderModel } from '../models/order'
 import { ProductModel } from '../models/product'
 import { UserModel } from '../models/user'
 import products from './data/products'
 import users from './data/users'
 import { connectDB } from '../config'
-
-dotenv.config()
-colors.enable()
 
 async function importData() {
   try {
