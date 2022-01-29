@@ -2,7 +2,7 @@ import React, { FormEvent, useState, useEffect } from 'react'
 import { useUserStore } from '../store/user'
 import FormContainer from '../components/FormContainer'
 import { Button, Col, Form, Row } from 'react-bootstrap'
-import { Link, useLocation, useHistory } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 
@@ -21,13 +21,13 @@ export default function LoginPage() {
   }
   const search = useLocation().search
   const redirect = search ? search.split('=')[1] : '/'
-  const history = useHistory()
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (user) {
-      history.push(redirect)
+      navigate(redirect)
     }
-  }, [user, redirect, history])
+  }, [user, redirect, navigate])
   return (
     <FormContainer>
       <br />
