@@ -12,7 +12,8 @@
     "build": "npm run build --prefix frontend",
     "start": "ts-node backend/server.ts",
     "seeder": "tsnd --respawn backend/tools/seeder.ts",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm i --prefix frontend && npm run build --prefix frontend"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm i --prefix frontend && npm run build --prefix frontend",
+    "format": "prettier --write \"**/*.{html,css,js,ts,jsx,tsx}\""
   },
   "dependencies": {
     "bcryptjs": "2.4.3",
