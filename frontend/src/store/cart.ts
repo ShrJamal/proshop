@@ -37,13 +37,10 @@ let store = combine(
 )
 
 // Add DevTools
-store = devtools(store, 'CartStore')
+store = devtools(store, { name: 'CartStore' })
 
-//Persist
-if (typeof window != 'undefined') {
-  store = persist(store, {
+export const useCartStore = create(
+  persist(store, {
     name: 'cart',
-  })
-}
-
-export const useCartStore = create(store)
+  }),
+)

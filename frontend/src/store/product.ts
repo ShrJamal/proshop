@@ -75,13 +75,10 @@ type StoreType = {
 }
 
 // Add DevTools
-store = devtools(store, 'ProductsStore')
+store = devtools(store, { name: 'ProductsStore' })
 
-//Persist
-if (typeof window != 'undefined') {
-  store = persist(store, {
+export const useProductsStore = create(
+  persist(store, {
     name: 'products',
-  })
-}
-
-export const useProductsStore = create(store)
+  }),
+)
