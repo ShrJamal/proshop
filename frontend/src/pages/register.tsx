@@ -36,7 +36,7 @@ export default function RegisterPage() {
     if (user) {
       navigate(redirect)
     }
-  }, [user, redirect, history])
+  }, [user, redirect, navigate])
   return (
     <FormContainer>
       <br />
