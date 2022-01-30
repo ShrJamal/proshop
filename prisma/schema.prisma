@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  isAdmin   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id           String   @id @default(cuid())
+  name         String
+  image        String
+  description  String   @default("")
+  price        Float
+  brand        String   @default("")
+  category     String
+  countInStock Float    @default(0)
+  rating       Float    @default(0)
+  numReviews   Float    @default(0)
+  reviews      Review[]
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  name      String
+  rating    Float    @default(3)
+  comment   String
+  productId String?
+  Product   Product? @relation(fields: [productId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Order {
+  id                String          @id @default(cuid())
+  userId            String
+  items             OrderItem[]
+  shoppingAddressId String
+  shoppingAddress   ShoppingAddress @relation(fields: [shoppingAddressId], references: [id])
+  paymentResultId   String
+  paymentResult     PaymentResult   @relation(fields: [paymentResultId], references: [id])
+  taxPrice          Float           @default(0)
+  shippingPrice     Float           @default(0)
+  totalPrice        Float           @default(0)
+  isPaid            Boolean         @default(false)
+  paidAt            DateTime?
+  deliveredAt       DateTime?
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  name      String
+  quatity   Float   @default(1)
+  image     String
+  price     Float
+  productId String
+  orderId   String?
+  Order     Order?  @relation(fields: [orderId], references: [id])
+}
+
+model ShoppingAddress {
+  id       String  @id @default(cuid())
+  name     String
+  address  String  @default("")
+  city     String
+  postCode String
+  country  String
+  Order    Order[]
+}
+
+model PaymentResult {
+  id        String   @id @default(cuid())
+  status    String
+  updatedAt DateTime @default(now())
+  email     String
+  Order     Order[]
+}

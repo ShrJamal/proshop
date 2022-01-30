@@ -12,7 +12,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true
   },
-  "include": ["backend"],
+  "include": ["backend", "prisma/tools"],
   "exclude": ["node_modules"]
-  
+
 }

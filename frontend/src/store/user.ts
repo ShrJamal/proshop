@@ -1,7 +1,7 @@
 import create from 'zustand'
 import axios from 'axios'
 import { combine, persist, devtools } from 'zustand/middleware'
-import type { User } from '../@types/user'
+import { User } from '../@types/user'
 import { produce } from 'immer'
 
 let store = combine(
@@ -59,10 +59,13 @@ let store = combine(
 )
 
 // Add DevTools
-store = devtools(store, { name: 'UserStore' })
+store = devtools(store, 'UserStore')
 
-export const useUserStore = create(
-  persist(store, {
+//Persist
+if (typeof window != 'undefined') {
+  store = persist(store, {
     name: 'user',
-  }),
-)
+  })
+}
+
+export const useUserStore = create(store)

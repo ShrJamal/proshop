@@ -1,7 +1,7 @@
 import produce from 'immer'
 import create from 'zustand'
 import { combine, persist, devtools } from 'zustand/middleware'
-import type { Product } from '../@types/product'
+import { Product } from '../@types/product'
 
 let store = combine(
   {
@@ -37,10 +37,13 @@ let store = combine(
 )
 
 // Add DevTools
-store = devtools(store, { name: 'CartStore' })
+store = devtools(store, 'CartStore')
 
-export const useCartStore = create(
-  persist(store, {
+//Persist
+if (typeof window != 'undefined') {
+  store = persist(store, {
     name: 'cart',
-  }),
-)
+  })
+}
+
+export const useCartStore = create(store)

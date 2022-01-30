@@ -1,4 +1,4 @@
-import type { Review } from './review'
+import { Review } from './review'
 
 export interface Product {
   _id: string

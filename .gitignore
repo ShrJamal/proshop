@@ -1,44 +1,6 @@
+node_modules
 .DS_Store
-node_modules/
-.vscode/
-.idea/
-.pnp
-.pnp.js
-*.pem
-
-# build
-build/
-package/
-dist/
-dist-ssr/
-.next/
-out/
-
-# debug
-npm-debug.log*
-package-lock.json
-.yarn
-yarn.lock
-yarn-debug.log*
-yarn-error.log*
-pnpm-lock.yaml
-.pnpm-debug.log*
-
-# local env files
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+dist
+dist-ssr
 *.local
-
-# vercel
-.vercel
-
-# turbo
-.turbo
-tsconfig.tsbuildinfo
-
-frontend/node_modules
-frontend/build
-frontend/.eslintcache
+.env

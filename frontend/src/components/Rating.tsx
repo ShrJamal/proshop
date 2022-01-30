@@ -1,5 +1,5 @@
 import React from 'react'
-import type { Color } from 'react-bootstrap/esm/types'
+import { Color } from 'react-bootstrap/esm/types'
 
 type RatingType = {
   value: number

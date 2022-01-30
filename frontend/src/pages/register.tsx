@@ -2,7 +2,7 @@ import React, { FormEvent, useState, useEffect } from 'react'
 import { useUserStore } from '../store/user'
 import FormContainer from '../components/FormContainer'
 import { Button, Col, Form, Row } from 'react-bootstrap'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useHistory } from 'react-router-dom'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 
@@ -30,13 +30,13 @@ export default function RegisterPage() {
   }
   const search = useLocation().search
   const redirect = search ? search.split('=')[1] : '/'
-  const navigate = useNavigate()
+  const history = useHistory()
 
   useEffect(() => {
     if (user) {
-      navigate(redirect)
+      history.push(redirect)
     }
-  }, [user, redirect, navigate])
+  }, [user, redirect, history])
   return (
     <FormContainer>
       <br />

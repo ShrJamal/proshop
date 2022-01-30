@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import { Link, useParams, useHistory } from 'react-router-dom'
 import { Col, Row, Image, ListGroup, Button, Form } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import Loader from '../components/Loader'
@@ -9,19 +9,19 @@ import { useCartStore } from '../store/cart'
 
 export default function ProductPage() {
   const { id } = useParams<{ id: string }>()
-  const navigate = useNavigate()
+  const history = useHistory()
   const { loading, error, product, fetchProduct } = useProductsStore()
   const { addToCart } = useCartStore()
 
   useEffect(() => {
-    id && fetchProduct(id)
+    fetchProduct(id)
   }, [id, fetchProduct])
 
   const [qty, setQty] = useState(1)
 
   function addToCartHandler() {
     if (product) addToCart(product, qty)
-    navigate('/cart/' + id)
+    history.push('/cart/' + id)
   }
   return (
     <>
