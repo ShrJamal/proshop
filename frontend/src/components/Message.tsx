@@ -1,6 +1,6 @@
 import React from 'react'
 import { Alert } from 'react-bootstrap'
-import { Variant } from 'react-bootstrap/esm/types'
+import type { Variant } from 'react-bootstrap/esm/types'
 
 type MessageType = {
   variant?: Variant

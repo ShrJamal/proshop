@@ -1,7 +1,7 @@
 import create from 'zustand'
 import axios from 'axios'
 import { combine, persist, devtools } from 'zustand/middleware'
-import { User } from '../@types/user'
+import type { User } from '../@types/user'
 import { produce } from 'immer'
 
 let store = combine(

@@ -2,7 +2,7 @@ import axios from 'axios'
 import produce from 'immer'
 import create from 'zustand'
 import { combine, persist, devtools } from 'zustand/middleware'
-import { Product } from '../@types/product'
+import type { Product } from '../@types/product'
 
 let store = combine(
   {

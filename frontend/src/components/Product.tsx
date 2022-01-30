@@ -2,7 +2,7 @@ import React from 'react'
 import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Rating from './Rating'
-import { Product } from '../@types/product'
+import type { Product } from '../@types/product'
 
 type ProductType = {
   product: Product
