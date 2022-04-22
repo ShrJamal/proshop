@@ -8,7 +8,7 @@ import { ProductModel } from '../models/product'
 import { UserModel } from '../models/user'
 import products from './data/products'
 import users from './data/users'
-import { connectDB } from '../config'
+import mongoose from 'mongoose'
 
 async function importData() {
   try {
@@ -42,7 +42,7 @@ async function destroyDate() {
 }
 async function main() {
   try {
-    await connectDB()
+    await mongoose.connect(process.env.MONGO_URI ?? '')
     if (process.argv[2] === '-d') {
       await destroyDate()
     } else {
